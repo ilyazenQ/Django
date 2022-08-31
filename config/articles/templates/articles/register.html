@@ -1,0 +1,12 @@
+{% extends 'articles/base.html' %}
+
+{% block content %}
+
+<hr>
+<form action="{% url 'register' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Регистрация</button>
+</form>
+<hr>
+{% endblock %}

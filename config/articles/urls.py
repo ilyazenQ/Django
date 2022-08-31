@@ -9,4 +9,9 @@ urlpatterns = [
     path('destroy/<int:id>/', destroy, name="destroy"),
     path('category/<slug:slug>/', CategoryList.as_view(), name="cat"),
     path('tag/<int:id>/', TagList.as_view(), name="tag"),
+
+    path('login/', LoginUser.as_view(), name="login"),
+    path('logout/', logout_user, name="logout"),
+    path('register/', RegisterUser.as_view(), name='register'),
+
 ]

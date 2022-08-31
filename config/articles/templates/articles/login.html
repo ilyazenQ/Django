@@ -1,0 +1,12 @@
+{% extends 'articles/base.html' %}
+
+{% block content %}
+
+<hr>
+<form action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Логин</button>
+</form>
+<hr>
+{% endblock %}

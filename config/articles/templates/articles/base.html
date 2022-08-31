@@ -14,6 +14,20 @@
     <li><a href="{% url 'add' %}">ADD </a></li>
 </ul>
 <hr>
+{% if request.user.is_authenticated %}
+<h2>Привет {{request.user.username}}</h2>
+{% else %}
+<h2>Регистрация</h2>
+{% endif %}
+
+{% if request.user.is_authenticated %}
+    <li><a href="{% url 'logout' %}"> Выйти </a></li>
+{% else %}
+    <li><a href="{% url 'register' %}"> Регистрация </a></li>
+    <li><a href="{% url 'login' %}"> Логин </a></li>
+{% endif %}
+
+<hr>
 {% block content %}
 {% endblock %}
 </body>
