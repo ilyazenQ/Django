@@ -31,4 +31,15 @@
 			</li>
 	{% endfor %}
 </ul>
+<hr>
+<h2>Pagination</h2>
+<nav>
+    <ul>
+        {% for pag in page_obj.paginator.page_range %}
+        <li>
+            <a href="?page={{ pag }}">{{ pag }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</nav>
 {% endblock %}

@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.views.generic import ListView, DetailView, CreateView
 from django.shortcuts import render, redirect, get_object_or_404
+from django.core.paginator import Paginator
 
 from .Actions.getCategoriesAndTagsAction import getCategoriesAndTagsAction
 from .forms import AddPostForm
@@ -8,6 +9,7 @@ from .models import *
 
 
 class ArticlesList(ListView):
+    paginate_by = 1
     model = Article
     context_object_name = 'posts'
     cats, tags = getCategoriesAndTagsAction.execute()
@@ -24,6 +26,7 @@ class ArticleAdd(CreateView):
 
 
 class CategoryList(ListView):
+    paginate_by = 3
     model = Category
     context_object_name = 'posts'
     template_name = 'articles/article_list.html'
@@ -40,6 +43,7 @@ class CategoryList(ListView):
 
 
 class TagList(ListView):
+    paginate_by = 3
     model = Tag
     context_object_name = 'posts'
     template_name = 'articles/article_list.html'
