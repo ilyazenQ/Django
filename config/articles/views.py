@@ -23,6 +23,8 @@ class ArticlesList(ListView):
         context = super().get_context_data(**kwargs)
         return context
 
+    def get_queryset(self):
+        return Article.objects.filter(is_published=True).select_related('cat')
 
 class RegisterUser(CreateView):
     form_class = RegisterUserForm
@@ -56,7 +58,7 @@ class CategoryList(ListView):
         return context
 
     def get_queryset(self):
-        return Article.objects.filter(cat__slug=self.kwargs['slug'])
+        return Article.objects.filter(cat__slug=self.kwargs['slug']).select_related('cat')
 
 
 class LoginUser(LoginView):
@@ -89,7 +91,7 @@ class TagList(ListView):
         return context
 
     def get_queryset(self):
-        return Article.objects.filter(tags__pk=self.kwargs['id'])
+        return Article.objects.filter(tags__pk=self.kwargs['id']).select_related('cat')
 
 
 class ArticleShow(DetailView):
