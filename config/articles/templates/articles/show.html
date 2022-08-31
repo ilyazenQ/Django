@@ -1,0 +1,29 @@
+{% extends 'articles/base.html' %}
+
+{% block content %}
+
+{% for cat in cats %}
+	<h2>{{ cat.name }}</h2>
+	<p class="link-read-post"><a href="{{ cat.get_absolute_url }}">Категория</a></p>
+
+{% endfor  %}
+<hr>
+{% for tag in tags %}
+	<h2>{{ tag.name }}</h2>
+<p class="link-read-post"><a href="{{ tag.get_absolute_url }}">Тег</a></p>
+{% endfor  %}
+<hr>
+<ul class="list-articles">
+
+	{% if p.photo %}
+		<img src="{{p.photo.url}}" alt="" width="50px" height="50px">
+	{% endif %}
+			<li><h1>{{p.title}}</h1>
+					{% autoescape on %}
+					{{p.content|linebreaks|truncatewords:50}}
+					{% endautoescape %}
+			<div class="clear"></div>
+			</li>
+
+</ul>
+{% endblock %}
